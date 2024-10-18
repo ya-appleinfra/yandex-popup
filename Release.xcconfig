@@ -1,0 +1,26 @@
+//
+//  Release.xcconfig
+//  Yandex.Popup
+
+// Configuration settings file format documentation can be found at:
+// https://help.apple.com/xcode/#/dev745c5c974
+
+CONFIGURATION = Release
+MARKETING_VERSION = 0.8
+// Signing and Provisioning
+DEVELOPMENT_TEAM = 
+PROVISIONING_PROFILE_SPECIFIER = 
+// Branding and Naming
+PRODUCT_BUNDLE_IDENTIFIER = 
+PRODUCT_NAME = 
+WRAPPER_NAME = 
+BUNDLE_DISPLAY_NAME = 
+EXECUTABLE_NAME = 
+// Other build settings
+SYMROOT = ./build
+ONLY_ACTIVE_ARCH = NO
+CODE_SIGNING_REQUIRED = YES
+CODE_SIGN_INJECT_BASE_ENTITLEMENTS = NO
+ENABLE_HARDENED_RUNTIME = YES
+OTHER_CODE_SIGN_FLAGS = --timestamp --deep --options runtime
+

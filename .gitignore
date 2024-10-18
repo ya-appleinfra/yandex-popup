@@ -1,0 +1,6 @@
+build
+Yandex.Popup.xcodeproj/xcuserdata
+Yandex.Popup.xcodeproj/xcshareddata
+*.provisionprofile
+*.pkg
+.arcignore
