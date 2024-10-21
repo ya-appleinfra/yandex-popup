@@ -199,7 +199,7 @@ You can rebrand Yandex Popup by changing its name, bundle ID, and default icon. 
 4. Make sure that all the necessary signing identities are added to your Login Keychain
 5. Get the source code:
     ```
-    git clone https://github.com/ya-appleinfra/yandexpopup.git
+    git clone https://github.com/ya-appleinfra/yandex-popup.git
     ```
 6. If you wish to change the default icons, just replace them in Yandex.Popup/Assets.xcassets/AppIcon.appiconset/ directory (ensure proper naming and format)
 7. Run the build.sh script, which will guide you through the build process.
