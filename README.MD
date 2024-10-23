@@ -47,7 +47,7 @@ Window parameters:
 Universal parameters for all windowed popups:
 
  --popup-type                             Popup type, string [message, input, progress, qrcode, file, dropdown, notification], default is message
- --icon-name                              Generic icon name, string, various names could be found here: https://hetima.github.io/fucking_nsimage_syntax/
+ --icon-name                              Generic icon NSImage name, string
  --icon-path                              Generic icon path, string
  --icon-max-width                         Generic icon maximum width, int
  --header-text                            Generic header text, string
@@ -59,8 +59,6 @@ Universal parameters for all windowed popups:
  --action-button                          Generic Action Button visibility, int [0/1], default = 0
  --action-button-actions                  Generic Action button actions set, string, format='launch#app name|open#file path|open_url#url|exit|exit_err'
  --action-button-text                     Generic Action button text, string
- --notification-banner-path               Path to image that will be shown in notification, string
- --notification-banner-path               Name of the image that will be shown in notification, string, various names could be found here: https://hetima.github.io/fucking_nsimage_syntax/
 
 Input popup parameters:
 
@@ -89,7 +87,7 @@ QR-code popup parameters:
 
 Dropdown popup parameters:
 
- --dropdown-items                         Comma-separated drop-down menu items, string
+ --dropdown-items                         Comma-separated drop-down menu items, string, e.g.: --dropdown-items='item1, item2, item3'
  --dropdown-default                       Drop-down menu item chosen by default, string, if not specified will use the first item from the list
 
 Notification parameters:
