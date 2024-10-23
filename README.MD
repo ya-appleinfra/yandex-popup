@@ -8,7 +8,7 @@ By default, Yandex Popup is installed in /Library/Application Utilities/Yandex P
 
 To view usage information, run the following command in Terminal:
 ```shell
-/Library/Application\ Support/Yandex\ Popup/Yandex Popup.app/Contents/Resources/Yandex\ Popup --help
+/Library/Application\ Support/Yandex\ Popup/Yandex\ Popup.app/Contents/MacOS/Yandex\ Popup --help
 ```
 
 ## Control Yandex Popup content and apperance
@@ -119,7 +119,7 @@ Notification parameters:
 ## Usage Examples
 ### A simple Info message
 ```shell
-/Library/Application\ Support/Yandex\ Popup/Yandex Popup.app/Contents/Resources/Yandex\ Popup \
+/Library/Application\ Support/Yandex\ Popup/Yandex\ Popup.app/Contents/MacOS/Yandex\ Popup \
 --window-controls=0 \
 --window-title=0 \
 --window-height=100 \
@@ -132,7 +132,7 @@ Notification parameters:
 ![Simple Info message](images/simpleinfo.png)
 ### A simple Notification
 ```shell
-/Library/Application\ Support/Yandex\ Popup/Yandex Popup.app/Contents/Resources/Yandex\ Popup \
+/Library/Application\ Support/Yandex\ Popup/Yandex\ Popup.app/Contents/MacOS/Yandex\ Popup \
 --popup-type=notification \
 --notification-type=action \
 --notification-title-text='Hey!' \
@@ -145,7 +145,7 @@ Notification parameters:
 
 ### A simple progress bar window
 ```shell
-/Library/Application\ Support/Yandex\ Popup/Yandex Popup.app/Contents/Resources/Yandex\ Popup \
+/Library/Application\ Support/Yandex\ Popup/Yandex\ Popup.app/Contents/MacOS/Yandex\ Popup \
 --window-title=0 \
 --window-width=450 \
 --window-controls=0 \
@@ -164,7 +164,7 @@ Notification parameters:
 
 ### File input window with cancellation button
 ```shell
-/Library/Application\ Support/Yandex\ Popup/Yandex Popup.app/Contents/Resources/Yandex\ Popup \
+/Library/Application\ Support/Yandex\ Popup/Yandex\ Popup.app/Contents/MacOS/Yandex\ Popup \
 --window-title=0 \
 --window-width=450 \
 --window-controls=0 \
