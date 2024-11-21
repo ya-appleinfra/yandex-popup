@@ -8,18 +8,29 @@ import Foundation
 import Cocoa
 
 class DropDownViewController: PopupViewController {
+    var selected = ""
+    var output = [String: String]()
     
-    
+    @objc override func processOAuthCallback() {
+        let settings = popupSettings!
+        guard settings.processOauthCallback == 1 else { return }
+        
+        guard let provider = NSApplication.shared.delegate as? InputProvider else { return }
+        
+        output["access_token"] = provider.getToken() ?? ""
+        
+        if settings.exitOnOauthCallback == 1 {
+            okPushed(sender: self)
+        }
+    }
     
     @IBAction override func okPushed(sender: Any) {
-        var selected = ""
+        
         if let selectedValue = dropdownMenu?.selectedItem?.title {
             selected = selectedValue
         }
 
-        let output: [String: String] = [
-            "selected": selected
-        ]
+        output["selected"] = selected
 
         do {
             // Serialize to JSON

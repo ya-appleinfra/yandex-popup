@@ -150,6 +150,8 @@ class PopupViewController: NSViewController, NSTextFieldDelegate {
         
         NotificationCenter.default.addObserver(self, selector: #selector(reloadConfigNotification), name: Notification.Name("ReloadConfig"), object: nil)
         
+        NotificationCenter.default.addObserver(self, selector: #selector(processOAuthCallback), name: Notification.Name("OAuthCallbackRecieved"), object: nil)
+        
         self.applyConfig()
         
         super.viewDidLoad()
@@ -219,11 +221,27 @@ class PopupViewController: NSViewController, NSTextFieldDelegate {
     }
     
     @IBAction func okPushed(sender: Any) {
+        let settings = popupSettings!
+        if settings.processOauthCallback == 1 && settings.exitOnOauthCallback == 0 {
+            if let provider = NSApplication.shared.delegate as? InputProvider {
+                provider.printToken()
+            }
+        }
        NSApp.terminate(self)
     }
     
     @objc func reloadConfigNotification() {
         self.performSelector(onMainThread: #selector(applyConfig), with: nil, waitUntilDone: false)
+    }
+    
+    @objc func processOAuthCallback() {
+        let settings = popupSettings!
+        guard popupSettings?.processOauthCallback == 1 else { return }
+        if let provider = NSApplication.shared.delegate as? InputProvider,
+           settings.exitOnOauthCallback == 1 {
+            provider.printToken()
+            NSApp.terminate(self)
+        }
     }
     
 }

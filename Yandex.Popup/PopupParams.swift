@@ -54,6 +54,8 @@ struct PopupSettings {
     var actionButtonActions: String?
     var actionButtonText: String?
     
+    var exitOnOauthCallback: Int?
+    
     // notification
     
     var notificationType: String?
@@ -77,6 +79,7 @@ struct PopupSettings {
     var inputText: String?
     var inputPlaceholder: String?
     var inputSecure: Int?
+    var inputSecureSetToOauth: Int?
     var hideDock: Int?
     
     // progress
@@ -102,6 +105,9 @@ struct PopupSettings {
     // dropdown specific
     var dropdownItems: String?
     var dropdownDefault: String?
+    
+    // OAuth callback
+    var processOauthCallback: Int?
 }
 
 class PopupParams {
@@ -268,6 +274,16 @@ class PopupParams {
                            help: "Generic Action button text, string",
                            parser: { String($0) } )
         
+        kwargs.addArgument("--exit-on-oauth-callback", \.exitOnOauthCallback,
+                           category: .popupUniversal,
+                           help: "Define app behavior after receiving oauth callback (1 - print to stdout and exit immediately, 0 - print and exit only after user interaction), int [0/1], default = 0",
+                           parser: { Int($0) } )
+        
+        kwargs.addArgument("--process-oauth-callback", \.processOauthCallback,
+                           category: .popupUniversal,
+                           help: "Enable OAuth callback processing, int [0/1], default = 0",
+                           parser: { Int($0) } )
+        
         // notification
         
         kwargs.addArgument("--notification-type", \.notificationType,
@@ -354,6 +370,11 @@ class PopupParams {
         kwargs.addArgument("--input-secure", \.inputSecure,
                            category: .input,
                            help: "Input view secure input, int [0/1], default = 0",
+                           parser: { Int($0) } )
+        
+        kwargs.addArgument("--input-secure-set-to-oauth", \.inputSecureSetToOauth,
+                           category: .input,
+                           help: "If set to 1 will put received OAuth token into secure input field, otherwise will add \"access_token\" to output dictionaary, int [0/1], default = 0",
                            parser: { Int($0) } )
         
         // file input
@@ -465,6 +486,7 @@ class PopupParams {
         if !(["none", "input", "okbutton", "actionbutton"].contains(res.windowFocusElement)) {
             res.windowFocusElement = "none"
         }
+
         
         // title
         if res.titleEnabled == nil { res.titleEnabled = 1 }
@@ -491,6 +513,9 @@ class PopupParams {
         if res.headerText == nil { res.headerText = "" }
         if res.descText == nil { res.descText = NSMutableAttributedString(string: "") }
         if res.okButtonText == nil { res.okButtonText = "OK" }
+        
+        if res.processOauthCallback == nil { res.processOauthCallback = 0 }
+        if res.exitOnOauthCallback == nil { res.exitOnOauthCallback = 0 }
         
         // description attributed string
         
@@ -547,6 +572,7 @@ class PopupParams {
         if res.inputText == nil { res.inputText = "" }
         if res.inputPlaceholder == nil { res.inputPlaceholder = "" }
         if res.inputSecure == nil { res.inputSecure = 0 }
+        if res.inputSecureSetToOauth == nil { res.inputSecureSetToOauth = 0 }
         
         // progress
         
