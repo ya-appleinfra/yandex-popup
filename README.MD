@@ -4,7 +4,7 @@ Yandex Popup is a macOS admin tool written in Swift. It allows you to present cu
 ## How can I try it?
 Latest version of Yandex Popup can be found on the Releases page
 
-By default, Yandex Popup is installed in /Library/Application Utilities/Yandex Popup.
+By default, Yandex Popup is installed in /Library/Application Support/Yandex Popup.
 
 To view usage information, run the following command in Terminal:
 ```shell
