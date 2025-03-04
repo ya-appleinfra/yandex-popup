@@ -50,6 +50,7 @@
   "Yandex.Popup/WindowController.swift":"appleinfra/repos/Yandex.Popup/Yandex.Popup/WindowController.swift",
   "Yandex.Popup/Yandex_Popup.entitlements":"appleinfra/repos/Yandex.Popup/Yandex.Popup/Yandex_Popup.entitlements",
   "build.sh":"appleinfra/repos/Yandex.Popup/build.sh",
+  "images/popup_update.gif":"appleinfra/repos/Yandex.Popup/images/popup_update.gif",
   "images/simple_file_input.png":"appleinfra/repos/Yandex.Popup/images/simple_file_input.png",
   "images/simple_notification.png":"appleinfra/repos/Yandex.Popup/images/simple_notification.png",
   "images/simple_progress.png":"appleinfra/repos/Yandex.Popup/images/simple_progress.png",

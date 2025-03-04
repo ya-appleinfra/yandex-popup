@@ -59,12 +59,15 @@ Universal parameters for all windowed popups:
  --action-button                          Generic Action Button visibility, int [0/1], default = 0
  --action-button-actions                  Generic Action button actions set, string, format='launch#app name|open#file path|open_url#url|exit|exit_err'
  --action-button-text                     Generic Action button text, string
+ --exit-on-oauth-callback                 Define app behavior after receiving oauth callback (1 - print to stdout and exit immediately, 0 - print and exit only after user interaction), int [0/1], default = 0
+ --process-oauth-callback                 Enable OAuth callback processing, int [0/1], default = 0
 
 Input popup parameters:
 
  --input-text                             Input view initial text, string
  --input-placeholder                      Input view placeholder text, string
  --input-secure                           Input view secure input, int [0/1], default = 0
+ --input-secure-set-to-oauth              If set to 1 will put received OAuth token into secure input field, otherwise will add "access_token" to output dictionaary, int [0/1], default = 0
 
 File input popup parameters:
 
@@ -181,6 +184,82 @@ Notification parameters:
 --action-button-actions="exit_err"
 ```
 ![Simple File Input](images/simple_file_input.png)
+
+
+
+### Processing OAuth callbacks
+Yandex Popup supports custom URL scheme <mark>yandex-popup://</mark>. You can setup your OAuth provider to use <mark>yandex-popup://oauth_callback</mark> as a callback URL, so that Yandex Popup could process the callback and pass recieved token to your script
+
+```shell
+/Library/Application\ Support/Yandex\ Popup/Yandex\ Popup.app/Contents/MacOS/Yandex\ Popup \
+--window-title=0 \
+--window-controls=0 \
+--popup-type=input \
+--input-secure=1 \
+--description-text="Please follow this link to generate OAuth token. If you already have OAuth token, you can enter it into the field below" \
+--description-detect-links=1 \
+--description-links-layout='19#4#https://app.example.com/oauth/' \
+--ok-button-text="Proceed" \
+--exit-on-oauth-callback=0 \
+--input-secure-set-to-oauth=1 \
+--process-oauth-callback=1
+```
+
+
+### Using configuration file and dynamically update popup contents
+You can save the settings in a JSON file and use the <mark>YA_POPUP_CONF_FILE</mark> environment variable to load them. 
+This allows you to update the popup window’s content by editing the file and signaling the app to refresh, without restarting the app.
+
+
+```shell
+POPUP_PATH="/Library/Application Support/Yandex Popup/Yandex Popup.app/Contents/MacOS/Yandex Popup"
+POPUP_PID="/tmp/popup_pid"
+
+export YA_POPUP_CONF_FILE="/tmp/popup_config.json"
+
+# Initial setup
+plutil -create xml1 "$YA_POPUP_CONF_FILE"
+plutil -insert "window-title" -integer 0 "$YA_POPUP_CONF_FILE"
+plutil -insert "window-width" -integer 450 "$YA_POPUP_CONF_FILE"
+plutil -insert "window-controls" -integer 0 "$YA_POPUP_CONF_FILE"
+plutil -insert "window-hide-dock" -integer 1 "$YA_POPUP_CONF_FILE"
+plutil -insert "window-floating" -integer 1 "$YA_POPUP_CONF_FILE"
+plutil -insert "popup-type" -string "progress" "$YA_POPUP_CONF_FILE"
+plutil -insert "progress-type" -string "bar" "$YA_POPUP_CONF_FILE"
+plutil -insert "icon-path" -string "/System/Library/CoreServices/CoreTypes.bundle/Contents/Resources/ToolbarCustomizeIcon.icns" "$YA_POPUP_CONF_FILE"
+plutil -insert "header-text" -string "Setting things up" "$YA_POPUP_CONF_FILE"
+plutil -insert "description-text" -string "Please wait for configuration to apply. It will take just a few more minutes." "$YA_POPUP_CONF_FILE"
+plutil -insert "ok-button" -integer 0 "$YA_POPUP_CONF_FILE"
+plutil -insert "pid-file" -string "$POPUP_PID" "$YA_POPUP_CONF_FILE"
+plutil -convert json "$YA_POPUP_CONF_FILE" -r
+
+# Start Yandex Popup
+"$POPUP_PATH" &
+
+# Simulating some work in progress
+sleep 2
+
+# Updating the configuration file
+sed -i '' "s/\"description-text\" : .*/\"description-text\" : \"Downloading a very important package...\",/" ${YA_POPUP_CONF_FILE}
+
+# Signal Yandex Popup to refresh window content
+open yandex-popup://refresh
+
+sleep 2
+
+# Updating the configuration file once more
+sed -i '' "s/\"description-text\" : .*/\"description-text\" : \"Installing a very important package...\",/" ${YA_POPUP_CONF_FILE}
+
+# You can also send SUGUSR1 to the Yandex Popup process instead of using custom url scheme
+kill -SIGUSR1 $(cat $POPUP_PID)
+
+sleep 2
+
+# Kill Yandex Popup when the work is done
+kill $(cat $POPUP_PID)
+```
+![Refresh Popup](images/popup_update.gif)
+
 
 
 ## Rebranding Yandex Popup
