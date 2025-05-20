@@ -16,6 +16,7 @@ class PopupViewController: NSViewController, NSTextFieldDelegate {
     
     @IBOutlet weak var okButton: NSButton!
     @IBOutlet weak var actionButton: NSButton!
+    @IBOutlet weak var infoButton: NSButton!
     
     // input
 
@@ -78,6 +79,15 @@ class PopupViewController: NSViewController, NSTextFieldDelegate {
         }else{
             actionButton.isHidden = true
         }
+        
+        infoButton.title = settings.infoButtonText!
+        if settings.infoButtonEnabled != 0 {
+            infoButton.isHidden = false
+        } else {
+            infoButton.isHidden = true
+        }
+        
+        
         
         // input
         
@@ -222,12 +232,65 @@ class PopupViewController: NSViewController, NSTextFieldDelegate {
     
     @IBAction func okPushed(sender: Any) {
         let settings = popupSettings!
+        
+        let actions = settings.okButtonActions!.components(separatedBy: "|")
+        
         if settings.processOauthCallback == 1 && settings.exitOnOauthCallback == 0 {
             if let provider = NSApplication.shared.delegate as? InputProvider {
                 provider.printToken()
             }
         }
-       NSApp.terminate(self)
+        
+        for action in actions {
+        
+            let actionComponents = action.components(separatedBy: "#")
+        
+            switch actionComponents[0] {
+            
+            case "launch":
+                NSWorkspace.shared.launchApplication(actionComponents[1])
+            case "open":
+                NSWorkspace.shared.openFile(actionComponents[1])
+            case "open_url":
+                NSWorkspace.shared.open(URL(string: actionComponents[1])!)
+            case "exit":
+                NSApp.terminate(self)
+            case "exit_err":
+                exit(1)
+            default:
+                NSApp.terminate(self)
+            }
+            
+        }
+    }
+    
+    @IBAction func infoButtonPushed(sender: Any) {
+        
+        let settings = popupSettings!
+        
+        let actions = settings.infoButtonActions!.components(separatedBy: "|")
+        
+        for action in actions {
+        
+            let actionComponents = action.components(separatedBy: "#")
+        
+            switch actionComponents[0] {
+            
+            case "launch":
+                NSWorkspace.shared.launchApplication(actionComponents[1])
+            case "open":
+                NSWorkspace.shared.openFile(actionComponents[1])
+            case "open_url":
+                NSWorkspace.shared.open(URL(string: actionComponents[1])!)
+            case "exit":
+                NSApp.terminate(self)
+            case "exit_err":
+                exit(1)
+            default:
+                NSApp.terminate(self)
+            }
+            
+        }
     }
     
     @objc func reloadConfigNotification() {

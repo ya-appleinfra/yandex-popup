@@ -47,12 +47,17 @@ struct PopupSettings {
     var descText: NSMutableAttributedString?
     var okButtonEnabled: Int?
     var okButtonText: String?
+    var okButtonActions: String?
     var descLinksDetect: Int?
     var descLinks: String?
     
     var actionButton: Int?
     var actionButtonActions: String?
     var actionButtonText: String?
+    
+    var infoButtonEnabled: Int?
+    var infoButtonText: String?
+    var infoButtonActions: String?
     
     var exitOnOauthCallback: Int?
     
@@ -254,6 +259,11 @@ class PopupParams {
                            help: "Generic OK button visibility, int [0/1], default = 1",
                            parser: { Int($0) } )
         
+        kwargs.addArgument("--ok-button-actions", \.okButtonActions,
+                           category: .popupUniversal,
+                           help: "Generic OK button actions set, string, format='launch#app name|open#file path|open_url#url|exit|exit_err', default: 'exit'",
+                           parser: { String($0) } )
+        
         kwargs.addArgument("--ok-button-text", \.okButtonText,
                            category: .popupUniversal,
                            help: "Generic OK button text, string",
@@ -272,6 +282,21 @@ class PopupParams {
         kwargs.addArgument("--action-button-text", \.actionButtonText,
                            category: .popupUniversal,
                            help: "Generic Action button text, string",
+                           parser: { String($0) } )
+        
+        kwargs.addArgument("--info-button", \.infoButtonEnabled,
+                           category: .popupUniversal,
+                           help: "Generic Info Button visibility, int [0/1], default = 0",
+                           parser: { Int($0) } )
+        
+        kwargs.addArgument("--info-button-actions", \.infoButtonActions,
+                           category: .popupUniversal,
+                           help: "Generic Info button actions set, string, format='launch#app name|open#file path|open_url#url|exit|exit_err', default: 'exit'",
+                           parser: { String($0) } )
+        
+        kwargs.addArgument("--info-button-text", \.infoButtonText,
+                           category: .popupUniversal,
+                           help: "Generic Info button text, string, default: 'More Info'",
                            parser: { String($0) } )
         
         kwargs.addArgument("--exit-on-oauth-callback", \.exitOnOauthCallback,
@@ -513,6 +538,7 @@ class PopupParams {
         if res.headerText == nil { res.headerText = "" }
         if res.descText == nil { res.descText = NSMutableAttributedString(string: "") }
         if res.okButtonText == nil { res.okButtonText = "OK" }
+        if res.okButtonActions == nil { res.okButtonActions = "" }
         
         if res.processOauthCallback == nil { res.processOauthCallback = 0 }
         if res.exitOnOauthCallback == nil { res.exitOnOauthCallback = 0 }
@@ -566,6 +592,11 @@ class PopupParams {
         if res.actionButton == nil { res.actionButton = 0 }
         if res.actionButtonText == nil { res.actionButtonText = "Action" }
         if res.actionButtonActions == nil { res.actionButtonActions = "" }
+        
+        // info button
+        if res.infoButtonEnabled == nil { res.infoButtonEnabled = 0 }
+        if res.infoButtonText == nil { res.infoButtonText = "More Info" }
+        if res.infoButtonActions == nil { res.infoButtonText = "exit" }
         
         // input
         

@@ -27,7 +27,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		C023A90223E9946C009F09D9 /* Yandex Popup.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Yandex Popup.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C023A90223E9946C009F09D9 /* Yandex.Popup.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Yandex.Popup.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C023A90523E9946C009F09D9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C023A90723E9946C009F09D9 /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
 		C023A90923E9946D009F09D9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -73,7 +73,7 @@
 		C023A90323E9946C009F09D9 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				C023A90223E9946C009F09D9 /* Yandex Popup.app */,
+				C023A90223E9946C009F09D9 /* Yandex.Popup.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -137,7 +137,7 @@
 			);
 			name = Yandex.Popup;
 			productName = Yandex.Popup;
-			productReference = C023A90223E9946C009F09D9 /* Yandex Popup.app */;
+			productReference = C023A90223E9946C009F09D9 /* Yandex.Popup.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -224,7 +224,6 @@
 /* Begin XCBuildConfiguration section */
 		C023A91023E9946D009F09D9 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = EEBF21D12CA1A1DC001ECC70 /* Release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				BUNDLE_DISPLAY_NAME = $PRODUCT_NAME;
@@ -343,19 +342,18 @@
 		};
 		C023A91323E9946D009F09D9 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = EEBF21D12CA1A1DC001ECC70 /* Release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				BUNDLE_DISPLAY_NAME = $BUNDLE_DISPLAY_NAME;
 				CODE_SIGN_ENTITLEMENTS = Yandex.Popup/Yandex_Popup.entitlements;
 				CODE_SIGN_IDENTITY = $CODE_SIGN_IDENTITY;
-				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Developer ID Application";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_INJECT_BASE_ENTITLEMENTS = $CODE_SIGN_INJECT_BASE_ENTITLEMENTS;
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = $DEVELOPMENT_TEAM;
-				"DEVELOPMENT_TEAM[sdk=macosx*]" = $DEVELOPMENT_TEAM;
+				"DEVELOPMENT_TEAM[sdk=macosx*]" = "";
 				INFOPLIST_FILE = Yandex.Popup/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = $BUNDLE_DISPLAY_NAME;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -363,10 +361,10 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.14;
-				PRODUCT_BUNDLE_IDENTIFIER = "$(PRODUCT_BUNDLE_IDENTIFIER)";
+				PRODUCT_BUNDLE_IDENTIFIER = "ru.yandex.yandex-popup";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = $PROVISIONING_PROFILE_SPECIFIER;
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = $PROVISIONING_PROFILE_SPECIFIER;
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;

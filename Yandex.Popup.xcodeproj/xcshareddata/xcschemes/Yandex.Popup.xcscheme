@@ -16,7 +16,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "C023A90123E9946C009F09D9"
-               BuildableName = "Yandex.Popup"
+               BuildableName = "Yandex.Popup.app"
                BlueprintName = "Yandex.Popup"
                ReferencedContainer = "container:Yandex.Popup.xcodeproj">
             </BuildableReference>
@@ -45,11 +45,65 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "C023A90123E9946C009F09D9"
-            BuildableName = "Yandex.Popup"
+            BuildableName = "Yandex.Popup.app"
             BlueprintName = "Yandex.Popup"
             ReferencedContainer = "container:Yandex.Popup.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
+      <CommandLineArguments>
+         <CommandLineArgument
+            argument = "--popup-type=&quot;input&quot;"
+            isEnabled = "YES">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "--icon-path=&quot;/Applications/Proxifier.app/Contents/Resources/AppIcon.icns&quot;"
+            isEnabled = "YES">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "--window-title=0"
+            isEnabled = "YES">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "--window-controls=0"
+            isEnabled = "YES">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "--header-text=&quot;Password required&quot;"
+            isEnabled = "YES">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "--description-text=&quot;Please provide your password to proceed with Proxifier setup&quot;"
+            isEnabled = "YES">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "--ok-button-text=&quot;Proceed&quot;"
+            isEnabled = "YES">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "--action-button=1"
+            isEnabled = "YES">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "--action-button-actions=&quot;exit_err&quot;"
+            isEnabled = "YES">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "--action-button-text=&quot;Cancel&quot;"
+            isEnabled = "YES">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "--info-button=1"
+            isEnabled = "YES">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "--info-button-actions=&quot;open_url#https://wiki.yandex-team.ru/hd/rfsmanuals/prilozhenija/proxifiergeneral/#null&quot;"
+            isEnabled = "YES">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "--info-button-text=&quot;More Info&quot;"
+            isEnabled = "YES">
+         </CommandLineArgument>
+      </CommandLineArguments>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"
@@ -62,7 +116,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "C023A90123E9946C009F09D9"
-            BuildableName = "Yandex.Popup"
+            BuildableName = "Yandex.Popup.app"
             BlueprintName = "Yandex.Popup"
             ReferencedContainer = "container:Yandex.Popup.xcodeproj">
          </BuildableReference>
