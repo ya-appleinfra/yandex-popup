@@ -142,6 +142,14 @@ class RootViewController: NSViewController, UNUserNotificationCenterDelegate {
                             
                             cont.categoryIdentifier = settings.notificationType!
                             
+                            if let path = settings.iconPath, !path.isEmpty {
+                                let iconURL = URL(fileURLWithPath: path)
+                                if FileManager.default.fileExists(atPath: path),
+                                   let attachment = try? UNNotificationAttachment(identifier: "icon", url: iconURL, options: nil) {
+                                    cont.attachments = [attachment]
+                                }
+                            }
+
                             let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 0.1, repeats: false)
                             
                             let request = UNNotificationRequest(identifier: UUID().uuidString, content: cont, trigger: trigger)
