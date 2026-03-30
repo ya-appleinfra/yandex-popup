@@ -36,8 +36,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         if res.hideDock == 0 {
             NSApp.setActivationPolicy(.regular)
         }
-        
-        NSApp.activate(ignoringOtherApps: true)
+
+        if res.type != "notification" {
+            NSApp.activate(ignoringOtherApps: true)
+        }
         
         // pid
         

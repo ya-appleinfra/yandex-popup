@@ -110,6 +110,14 @@ class WindowController: NSWindowController, NSWindowDelegate {
         if res.floating == 1 { self.window?.level = .floating }
     }
     
+    override func showWindow(_ sender: Any?) {
+        let res = popupParams.parseSettings()
+        if res.type == "notification" {
+            return
+        }
+        super.showWindow(sender)
+    }
+
     override func windowDidLoad() {
         
         NotificationCenter.default.addObserver(self, selector: #selector(reloadConfigNotification), name: Notification.Name("ReloadConfig"), object: nil)
